@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Router Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 15px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 5px; /* Space between buttons */
+        }
+    </style>
+</head>
+<body>
+    <h1>Personal Blog</h1>
+    <!--script>
+        function promptLogin() {
+            while (true) {
+                var username = prompt("Enter Username:");
+                var password = prompt("Enter Password:");
+                
+                if (username === "a" && password === "a") {
+                    alert("Login successful!");
+                    break;
+                } else {
+                    alert("Invalid credentials. Please try again.");
+                }
+            }
+        }
+        promptLogin();
+    </script--> 
+
+    <a href="/new">Add Post</a>
+
+    <table>
+        <tr>
+            <th>Blog Title</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            {% for post in posts %}
+            <td>{{post.title}}</td>
+            <td class="action-buttons">
+                <a href="/edit/{{post.id}}">Edit</a>
+                <a href="/admin">Delete</a>
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+
+</body>
+</html>

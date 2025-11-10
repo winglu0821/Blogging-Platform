@@ -7,8 +7,8 @@ from datetime import datetime
 DATABASE = {
 'dbname' : os.getenv('DB_NAME'),
 'user' : os.getenv('DB_USER'),
-# 'password' : os.getenv('DB_PASSWORD'),
-'password' : 'admin',
+'password' : os.getenv('DB_PASSWORD'),
+# 'password' : 'admin',
 'host' : 'localhost',  
 'port' : '5432'  
 }    
@@ -70,8 +70,8 @@ def delete(id):
     connect.commit()
     return redirect(url_for('admin'))
 
-@app.route('/edit/<int:id>', methods=['POST'])
-def update(id):
+# @app.route('/edit/<int:id>', methods=['POST'])
+# def update(id):
 
 if __name__ == '__main__':
     app.run(debug=True)

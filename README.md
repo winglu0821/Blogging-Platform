@@ -1,1 +1,1 @@
-# Blogging-Platform-API
+# Blogging-Platform

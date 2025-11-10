@@ -4,11 +4,11 @@
 </head>
 <body>
     <h1>Update Article</h1>
-    <form action="/new" method="post">
-        Title: <input type="text" name="title"><br>
-        Date:{{ date }}<br>
-        Content: <textarea  type="text" name="content"></textarea >
-        <input type="submit" value="Publish">
-    </form>
+        <form action="/edit/{{posts.id}}" method="POST">
+            Title: <input type="text" name="title" value="{{posts.title}}"><br>
+            Date:{{ posts.date }}<br>
+            Content: <textarea  type="text" name="content">{{posts.content}}</textarea >
+            <input type="submit" value="Update">
+        </form>
 </body>
 </html>

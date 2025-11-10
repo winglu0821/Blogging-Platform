@@ -42,11 +42,6 @@ def admin():
     post = [{'id': row[0], 'title': row[1]} for row in db.fetchall()]
     return render_template('admin.html',posts=post)
 
-@app.route('/edit/<int:id>')
-def edit(id):
-    db.execute(f'SELECT title, date, content FROM article WHE   E id = {id}')
-    return render_template('edit.html')
-
 @app.route('/new')
 def new():
     date = datetime.now().strftime('%Y-%m-%d')
@@ -61,7 +56,7 @@ def create():
     date = datetime.now().strftime('%Y-%m-%d')
     db.execute('INSERT INTO article (id, title, date, content) VALUES (%s, %s, %s, %s)', (id, title, date, content))
     connect.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('admin'))
 
 @app.route('/admin/delete/<int:id>')
 def delete(id):
@@ -69,9 +64,20 @@ def delete(id):
     connect.commit()
     return redirect(url_for('admin'))
 
-# @app.route('/edit/<int:id>', methods=['POST'])
-# def update(id):
+@app.route('/edit/<int:id>')
+def update(id):
+    db.execute(f'SELECT id, title, date, content FROM article WHERE id = {id};')
+    temp = db.fetchone()
+    post = {'id':temp[0],'title': temp[1], 'date': temp[2], 'content': temp[3]}
+    return render_template('edit.html', posts=post)
 
+@app.route('/edit/<int:id>', methods=['POST'])
+def save(id):
+    title = request.form['title']
+    content = request.form['content']
+    db.execute('UPDATE article SET title = %s, content = %s  WHERE id = %s', (title, content, id))
+    connect.commit()
+    return redirect(url_for('admin'))
+    
 if __name__ == '__main__':
     app.run(debug=True)
-

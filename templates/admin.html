@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Router Login</title>
+    <title>Admin</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -69,15 +69,17 @@
             <th>Blog Title</th>
             <th>Actions</th>
         </tr>
+        {% for post in posts %}
         <tr>
-            {% for post in posts %}
             <td>{{post.title}}</td>
             <td class="action-buttons">
                 <a href="/edit/{{post.id}}">Edit</a>
-                <a href="/admin">Delete</a>
+                <from action="/admin" method="Post">
+                    <a href="/admin/delete/{{post.id}}">Delete</a>
+                </from>
             </td>
-            {% endfor %}
         </tr>
+        {% endfor %}
     </table>
 
 </body>
